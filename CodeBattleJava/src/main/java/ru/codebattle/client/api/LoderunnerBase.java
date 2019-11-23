@@ -54,17 +54,19 @@ public abstract class LoderunnerBase extends WebSocketClient {
 
     @Override
     public void onMessage(String message) {
-        if (!shouldExit) {
-
+        log.info("222");
+        //if (!shouldExit) {
+            log.info("111");
             if (!message.startsWith(responsePrefix)) {
                 log.error(String.format("Something strange is happening on the server... Response:%n%s", message));
                 shouldExit = true;
             } else {
                 String boardString = message.substring(responsePrefix.length());
                 String action = doMove(new GameBoard(boardString));
+                log.info(action);
                 send(action);
             }
-        }
+        //}
 
     }
 
